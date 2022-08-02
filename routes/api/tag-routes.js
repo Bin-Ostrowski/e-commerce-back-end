@@ -74,7 +74,7 @@ router.put('/:id', (req, res) => {
       });
       return;
     }
-    res.json({message: 'your tag has been updated'});
+    res.json({message: 'Your tag has been updated'});
   })
   .catch(err => {
     console.log(err);
@@ -96,7 +96,7 @@ router.delete('/:id', (req, res) => {
       });
       return;
     }
-    res.json(dbTagData);
+    res.json({message: 'Your tag has been deleted'});
   })
   .catch(err => {
     console.log(err);

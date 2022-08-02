@@ -66,7 +66,7 @@ router.put('/:id', (req, res) => {
       });
       return;
     }
-    res.json(dbCategoryData);
+    res.json({message: 'Your category has been updated'});
   })
   .catch(err => {
     console.log(err);
@@ -88,7 +88,7 @@ router.delete('/:id', (req, res) => {
       });
       return;
     }
-    res.json(dbCategoryData);
+    res.json({message: 'Your category has been deleted'});
   })
   .catch(err => {
     console.log(err);
