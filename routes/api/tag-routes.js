@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     include: [
       {
         model: Product,
-        attributes:['id', 'product_name', 'price', 'stock', 'category_id' ]
+        through: ProductTag
       }
     ]
   }).then(dbTagData => res.json(dbTagData))
@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Product,
-        attributes:['id', 'product_name', 'price', 'stock', 'category_id' ]
+        through: ProductTag
       }
     ]
   }).then(dbTagData => {
@@ -50,6 +50,13 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
+  //expect {tag_name: 'Tag Name'}
+  Tag.create(req.body)
+  .then((dbTagData) => res.status(200).json(dbTagData))
+  .catch((err) => {
+    console.log(err);
+    res.status(400).json(err);
+  });
 });
 
 router.put('/:id', (req, res) => {
@@ -67,7 +74,7 @@ router.put('/:id', (req, res) => {
       });
       return;
     }
-    res.json(dbTagData);
+    res.json({message: 'your tag has been updated'});
   })
   .catch(err => {
     console.log(err);

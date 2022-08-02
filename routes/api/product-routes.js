@@ -9,15 +9,11 @@ router.get('/', (req, res) => {
   // be sure to include its associated Category and Tag data
   Product.findAll({
     //associations here
-    include: [
+    include: [Category,
       {
-        model: Category,
-        attributes:['id', 'category_name' ]
-      },
-      // {
-      //   model: Tag,
-      //   attributes: ['id', 'tag_name']
-      // }
+        model: Tag,
+        through: ProductTag
+      }
     ]
   }).then(dbProductData => res.json(dbProductData))
   .catch(err => {
@@ -34,15 +30,11 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id
     },
-    include: [
+    include: [Category,
       {
-        model: Category,
-        attributes:['id', 'category_name' ]
-      },
-      // {
-      //   model: Tag,
-      //   attributes: ['id', 'tag_name']
-      // }
+        model: Tag,
+        through: ProductTag
+      }
     ]
   })
   .then(dbProductData => {
@@ -71,23 +63,18 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
- Product.create({
-  product_name: req.body.product_name,
-  price: req.body.price,
-  stock: req.body.stock,
-  // tagIds: req.body.tagIds
- })
+ Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      // if (req.body.tagIds.length) {
-      //   const productTagIdArr = req.body.tagIds.map((tag_id) => {
-      //     return {
-      //       product_id: product.id,
-      //       tag_id,
-      //     };
-      //   });
-      //   return ProductTag.bulkCreate(productTagIdArr);
-      // }
+      if (req.body.tagIds.length) {
+        const productTagIdArr = req.body.tagIds.map((tag_id) => {
+          return {
+            product_id: product.id,
+            tag_id,
+          };
+        });
+        return ProductTag.bulkCreate(productTagIdArr);
+      }
       // if no product tags, just respond
       res.status(200).json(product);
     })
