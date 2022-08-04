@@ -1,4 +1,4 @@
-# E-Comerse Back End 
+# E-Commerce Back End 
         
   ## Description
   This application allowes an internet retail company to organize their store's back end data so it can be viewed on the store's front end website.
