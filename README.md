@@ -1,7 +1,7 @@
 # E-Comerse Back End 
         
   ## Description
-  This application allowes an internet retail company to organize their store's back end information so it can be viewed on on the store's front end website.
+  This application allowes an internet retail company to organize their store's back end data so it can be viewed on the store's front end website.
           
   ## Table of Content
   - [Description](#description)
@@ -19,7 +19,7 @@
   7. An example api route is: http://localhost:3001/api/categories
   
   ## Usage
-  [click her for demonstation](https://drive.google.com/file/d/1-McxMNxLS4tjETq7v0-6HADsZb_Vh7Ua/view)
+  [Click here for demonstation](https://drive.google.com/file/d/1-McxMNxLS4tjETq7v0-6HADsZb_Vh7Ua/view)
   
   ## Questions
   GitHub: [Bin-Ostrowski](https://github.com/Bin-Ostrowski)
